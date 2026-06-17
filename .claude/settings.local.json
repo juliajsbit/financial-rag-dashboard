@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(claude-api)",
+      "Bash(pg_isready -h localhost -p 5432)",
+      "Bash(redis-cli ping *)",
+      "Bash(brew list *)",
+      "Bash(brew --version)",
+      "Bash(pip3 --version)",
+      "Bash(npm --version)",
+      "Bash(ls /usr/local/bin/python* /opt/homebrew/bin/python* ~/.pyenv/shims/python* 2>/dev/null; which python3.11 python3.12 python3.10 2>/dev/null)",
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(python3 -m venv venv)",
+      "Bash(venv/bin/pip install *)",
+      "Bash(venv/bin/python3 -c \"from langchain_anthropic import AnthropicEmbeddings; print\\('ok'\\)\")",
+      "Bash(sw_vers)",
+      "Bash(nc -z localhost 5432)",
+      "Bash(nc -z localhost 6379)"
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+backend/venv/
+eval/.venv/
+.pytest_cache/
+
+# Env / secrets
+.env
+backend/.env
+
+# Node / Next
+frontend/node_modules/
+frontend/.next/
+frontend/tsconfig.tsbuildinfo
+
+# Editor / OS
+.idea/
+.DS_Store
