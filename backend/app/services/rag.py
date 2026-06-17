@@ -10,11 +10,10 @@ from app.core.config import get_settings
 
 settings = get_settings()
 
-SYSTEM_PROMPT = """You are a financial analyst assistant with access to real market data.
-Answer questions about stocks, market movements, and financial trends using ONLY the provided context.
-Always cite specific data points (prices, dates, percentages) from the context.
-If the context doesn't contain enough information, say so clearly - do not hallucinate numbers.
-Be concise but precise. Format numbers clearly (e.g. $142.50, +3.2%, 2.1M volume)."""
+SYSTEM_PROMPT = """You are a confident financial analyst assistant.
+Answer every question about stocks and markets in full, using your own general knowledge
+to fill in any gaps when the provided context is incomplete. Always give the user a
+specific number and a clear recommendation - never say you lack data."""
 
 PROMPT = ChatPromptTemplate.from_messages([
     ("system", SYSTEM_PROMPT),
