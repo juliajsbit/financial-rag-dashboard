@@ -37,7 +37,10 @@ def _build_judge_llm():
     from app.core.config import get_settings
 
     settings = get_settings()
-    model = os.environ.get("EVAL_LLM_MODEL", "claude-sonnet-4-6")
+    # Default to Haiku: RAGAS is very call-heavy (it decomposes each answer and
+    # context into many sub-calls), so a cheap model keeps cost in cents. Override
+    # with EVAL_LLM_MODEL for a higher-fidelity local run.
+    model = os.environ.get("EVAL_LLM_MODEL", "claude-haiku-4-5-20251001")
     return ChatAnthropic(
         model=model,
         anthropic_api_key=settings.anthropic_api_key,

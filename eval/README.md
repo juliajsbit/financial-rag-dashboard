@@ -161,8 +161,23 @@ which runs the harness and commits the new baseline.
 [`.github/workflows/llm-eval.yml`](../.github/workflows/llm-eval.yml) triggers on
 PRs touching `backend/app/services/rag.py`, `prompts/**`, or `eval/**`. It spins
 up Postgres (pgvector) + Redis, ingests a small ticker set, runs
-`ci_eval.py --subset 2`, posts the score diff as a PR comment, and fails the job
-on regression. Needs the `ANTHROPIC_API_KEY` repo secret.
+`ci_eval.py --subset 2 --no-ragas`, posts the score diff as a PR comment, and
+fails the job on regression. Needs the `ANTHROPIC_API_KEY` repo secret.
+
+### Cost
+
+RAGAS is **call-heavy** (it decomposes every answer and context into many
+sub-calls), so it dominates spend. To keep runs cheap:
+
+- The harness **defaults to Haiku** for both the RAGAS LLM and the judge
+  (override with `EVAL_LLM_MODEL` / `EVAL_JUDGE_MODEL` for a higher-fidelity run).
+- The **CI gate is judge-only** (`--no-ragas`): one Haiku call per question plus
+  the app's own generation, so a run costs cents. The judge alone still catches
+  prompt regressions (it flags fabricated answers and broken refusals).
+- The **update-baseline** workflow keeps the full 5-metric RAGAS picture but runs
+  it on Haiku, so refreshing the baseline stays cheap.
+- Running full RAGAS on a large model (e.g. Sonnet) over the whole dataset is the
+  expensive path - do it deliberately, locally, not on every PR.
 
 **Demonstrating it:** open a PR that weakens the system prompt in `rag.py` (e.g.
 remove the "use ONLY the provided context" / "say so clearly - do not
