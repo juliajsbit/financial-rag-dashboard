@@ -1,5 +1,7 @@
 # Financial RAG Dashboard
 
+[![LLM Eval Gate](https://github.com/juliajsbit/financial-rag-dashboard/actions/workflows/llm-eval.yml/badge.svg)](https://github.com/juliajsbit/financial-rag-dashboard/actions/workflows/llm-eval.yml)
+
 A full-stack retrieval-augmented-generation app over real market data, plus an
 **automated LLM evaluation harness** and a **prompt-regression CI gate** built on
 top of it.
@@ -72,6 +74,30 @@ python ci_eval.py --subset 2      # exit 0 = pass, 2 = regression
 Weaken the system prompt in `backend/app/services/rag.py` and the gate fails;
 tighten it and the gate passes. This is shift-left for AI quality - the same
 regression discipline as a test suite, applied to LLM output.
+
+### Blocking merges
+
+The workflow failing is only half of it - to actually **block a merge**, `main`
+has a branch protection rule that makes the `eval` check a required status check.
+A PR whose eval gate is red cannot be merged until it goes green.
+
+Set it up with the GitHub CLI (run once):
+
+```bash
+gh api -X PUT repos/<owner>/<repo>/branches/main/protection --input - <<'JSON'
+{
+  "required_status_checks": { "strict": true, "contexts": ["eval"] },
+  "enforce_admins": false,
+  "required_pull_request_reviews": null,
+  "restrictions": null
+}
+JSON
+```
+
+This is the part most ML candidates skip: wiring an eval into the same
+merge-blocking CI flow that gates normal code. Cost is kept low by running the
+gate **judge-only** on a small subset with Haiku (see
+[eval/README.md](eval/README.md#cost)).
 
 Full details, metrics explanations, thresholds, and offline-demo instructions:
 [`eval/README.md`](eval/README.md).
