@@ -1,13 +1,13 @@
 {
-  "_comment": "Known-good aggregate scores the CI gate compares against. Regenerate from a real run with the update-baseline workflow (or: python eval/ci_eval.py --update-baseline) after an intentional, reviewed improvement. The values below are seeded placeholders - replace them with a genuine baseline before relying on the gate.",
-  "generated_at": "seed-placeholder",
-  "n_questions": 0,
-  "source": "seed",
+  "_comment": "Known-good baseline from a full 37-question run (Claude generation + RAGAS on Sonnet, judge on Haiku). RAGAS skips refusal questions; refusals are covered by the judge. Refresh with eval/ci_eval.py --update-baseline or the update-baseline workflow.",
+  "generated_at": "2026-06-17T12:14:23",
+  "n_questions": 37,
+  "source": "full-dataset live run",
   "metrics": {
-    "faithfulness": 0.92,
-    "answer_relevancy": 0.88,
-    "context_precision": 0.85,
-    "context_recall": 0.82,
-    "judge_score": 0.84
+    "faithfulness": 0.9835,
+    "answer_relevancy": 0.609,
+    "context_precision": 0.5952,
+    "context_recall": 0.4643,
+    "judge_score": 0.9441
   }
 }

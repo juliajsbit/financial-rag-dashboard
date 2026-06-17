@@ -1,10 +1,15 @@
 fastapi>=0.111.0
 uvicorn[standard]>=0.29.0
 anthropic>=0.40.0
-langchain>=0.3.0
-langchain-anthropic>=0.3.0
-langchain-community>=0.3.0
-langchain-postgres>=0.0.12
+# Pin the LangChain family to the 0.3 line. Without upper bounds a fresh install
+# floats up to LangChain 1.x, which breaks the 0.3-era code in app/services and
+# is incompatible with ragas 0.2.x used by the eval harness.
+langchain>=0.3.0,<0.4
+langchain-core>=0.3.0,<0.4
+langchain-text-splitters>=0.3.0,<0.4
+langchain-anthropic>=0.3.0,<0.4
+langchain-community>=0.3.0,<0.4
+langchain-postgres>=0.0.12,<0.1
 pgvector>=0.3.0
 psycopg[binary]>=3.1.19
 redis>=5.0.4
@@ -16,5 +21,5 @@ python-dotenv>=1.0.1
 tiktoken>=0.7.0
 numpy>=1.26.4
 pandas>=2.2.2
-langchain-huggingface>=0.1.0
+langchain-huggingface>=0.1.0,<0.4
 sentence-transformers>=3.0.0

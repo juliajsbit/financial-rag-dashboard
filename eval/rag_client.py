@@ -10,7 +10,6 @@ and demonstrated without a live Postgres + Redis stack or API spend.
 """
 from __future__ import annotations
 
-import asyncio
 import json
 import sys
 from pathlib import Path
@@ -38,14 +37,16 @@ def _format_context_docs(docs) -> List[str]:
     return out
 
 
-async def _predict_live(question: str) -> Dict:
+def _predict_live(question: str) -> Dict:
     from app.services.rag import get_rag_chain  # imported lazily
 
     chain, retriever = get_rag_chain()
+    # Use the sync API: langchain-postgres only builds an async engine when given
+    # an async driver, so ainvoke() fails on the sync psycopg connection string.
     # Retrieve once for the contexts; the chain retrieves again internally, but
     # this keeps the eval contexts exactly aligned with what we report.
-    docs = await retriever.ainvoke(question)
-    answer = await chain.ainvoke(question)
+    docs = retriever.invoke(question)
+    answer = chain.invoke(question)
     return {"answer": answer, "contexts": _format_context_docs(docs)}
 
 
@@ -80,23 +81,20 @@ def predict_dataset(
             )
         return preds
 
-    async def _run() -> List[Prediction]:
-        preds: List[Prediction] = []
-        for e in entries:
-            res = await _predict_live(e.question)
-            preds.append(
-                Prediction(
-                    id=e.id,
-                    category=e.category,
-                    question=e.question,
-                    answer=res["answer"],
-                    contexts=res["contexts"],
-                    ground_truth=e.ground_truth_answer,
-                )
+    preds: List[Prediction] = []
+    for e in entries:
+        res = _predict_live(e.question)
+        preds.append(
+            Prediction(
+                id=e.id,
+                category=e.category,
+                question=e.question,
+                answer=res["answer"],
+                contexts=res["contexts"],
+                ground_truth=e.ground_truth_answer,
             )
-        return preds
-
-    return asyncio.run(_run())
+        )
+    return preds
 
 
 def save_predictions(preds: List[Prediction], path: Path) -> None:

@@ -58,6 +58,14 @@ def compute_ragas(preds: List[dict]) -> Dict[str, Dict[str, float]]:
     installed) returns an empty dict so the caller can carry on with the judge.
     """
     try:
+        # ragas calls nest_asyncio.apply() at import time to support nested event
+        # loops (e.g. Jupyter). nest_asyncio is incompatible with Python 3.12+
+        # and corrupts asyncio.wait_for ("Timeout should be used inside a task"),
+        # which makes every RAGAS metric fail. We score from a plain sync context
+        # with no running loop, so the patch is unneeded - neutralize it first.
+        import nest_asyncio
+        nest_asyncio.apply = lambda *a, **k: None
+
         from ragas import evaluate, EvaluationDataset
         from ragas.llms import LangchainLLMWrapper
         from ragas.embeddings import LangchainEmbeddingsWrapper
@@ -71,6 +79,15 @@ def compute_ragas(preds: List[dict]) -> Dict[str, Dict[str, float]]:
         print(f"[metrics] RAGAS unavailable, skipping RAGAS metrics: {exc}")
         return {}
 
+    # RAGAS faithfulness / answer_relevancy / context_* only make sense when an
+    # answer is expected. On "refusal" questions a correct answer is a refusal,
+    # which RAGAS scores as 0 relevancy and can't ground against a behavioral
+    # reference - that is measured by the LLM judge instead. So skip refusals
+    # here and let the judge cover them.
+    scored = [p for p in preds if p.get("category") != "refusal"]
+    if not scored:
+        return {}
+
     samples = [
         {
             "user_input": p["question"],
@@ -78,7 +95,7 @@ def compute_ragas(preds: List[dict]) -> Dict[str, Dict[str, float]]:
             "retrieved_contexts": p["contexts"],
             "reference": p["ground_truth"],
         }
-        for p in preds
+        for p in scored
     ]
     dataset = EvaluationDataset.from_list(samples)
 
@@ -94,7 +111,7 @@ def compute_ragas(preds: List[dict]) -> Dict[str, Dict[str, float]]:
 
     df = result.to_pandas()
     out: Dict[str, Dict[str, float]] = {}
-    for i, p in enumerate(preds):
+    for i, p in enumerate(scored):
         row = df.iloc[i]
         scores: Dict[str, float] = {}
         for our_name, aliases in _COLUMN_ALIASES.items():

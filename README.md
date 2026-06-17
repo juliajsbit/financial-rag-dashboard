@@ -51,6 +51,12 @@ python run_eval.py --selftest     # validate dataset, no model calls
 python run_eval.py --subset 2     # run a cheap slice
 ```
 
+A full 37-question run scores **faithfulness 0.98** and **judge_score 0.94**
+(the headline quality signals); the retrieval metrics run conservative by design
+(local embeddings, no OpenAI dependency). See
+[eval/sample/sample_report.md](eval/sample/sample_report.md) and the metric
+discussion in [eval/README.md](eval/README.md#results).
+
 ## Project 2 - prompt regression CI gate
 
 Turns the harness into a quality gate. On any PR that touches the prompt or
