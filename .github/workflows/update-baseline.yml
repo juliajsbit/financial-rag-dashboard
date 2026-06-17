@@ -41,7 +41,8 @@ jobs:
       DATABASE_URL: postgresql+psycopg://postgres:password@localhost:5432/finrag
       REDIS_URL: redis://localhost:6379
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-      EVAL_LLM_MODEL: claude-sonnet-4-6
+      # Haiku for RAGAS + judge keeps a full-baseline refresh cheap (still 5 metrics).
+      EVAL_LLM_MODEL: claude-haiku-4-5-20251001
       EVAL_JUDGE_MODEL: claude-haiku-4-5-20251001
 
     steps:

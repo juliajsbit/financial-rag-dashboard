@@ -47,7 +47,8 @@ def _build_llm():
     from app.core.config import get_settings
 
     settings = get_settings()
-    model = os.environ.get("EVAL_JUDGE_MODEL", os.environ.get("EVAL_LLM_MODEL", "claude-sonnet-4-6"))
+    # Default to Haiku - the judge is one call per question and cheap; keep it so.
+    model = os.environ.get("EVAL_JUDGE_MODEL", os.environ.get("EVAL_LLM_MODEL", "claude-haiku-4-5-20251001"))
     return ChatAnthropic(
         model=model,
         anthropic_api_key=settings.anthropic_api_key,
