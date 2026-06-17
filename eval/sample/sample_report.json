@@ -1,0 +1,823 @@
+{
+  "meta": {
+    "timestamp": "20260617_092817",
+    "n_questions": 37,
+    "subset": "all",
+    "source": "live",
+    "ragas": true,
+    "judge": true
+  },
+  "aggregate": {
+    "faithfulness": 0.9835,
+    "answer_relevancy": 0.609,
+    "context_precision": 0.5952,
+    "context_recall": 0.4643,
+    "judge_score": 0.9441
+  },
+  "by_category": {
+    "factual": {
+      "faithfulness": 0.9752,
+      "answer_relevancy": 0.6883,
+      "context_precision": 0.9167,
+      "context_recall": 0.625,
+      "judge_score": 0.9333
+    },
+    "comparison": {
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.2752,
+      "context_precision": 0.6875,
+      "context_recall": 0.5625,
+      "judge_score": 0.8584
+    },
+    "trend": {
+      "faithfulness": 0.9697,
+      "answer_relevancy": 0.8237,
+      "context_precision": 0.0208,
+      "context_recall": 0.125,
+      "judge_score": 1.0
+    },
+    "refusal": {
+      "judge_score": 0.9852
+    }
+  },
+  "results": [
+    {
+      "id": "fact-001",
+      "category": "factual",
+      "question": "What sector does Apple (AAPL) operate in?",
+      "answer": "Based on the provided context, Apple Inc. (AAPL) operates in the **Technology** sector, specifically within the **Consumer Electronics** industry.",
+      "ground_truth": "Apple operates in the Technology sector, specifically consumer electronics and related software and services.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9594,
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant correctly identifies Apple's sector as Technology with Consumer Electronics specialization, directly citing the retrieved context that states 'Apple Inc. (AAPL) is a Technology company in Consumer Electronics,' which aligns perfectly with the ground-truth answer."
+      }
+    },
+    {
+      "id": "fact-002",
+      "category": "factual",
+      "question": "What does Microsoft (MSFT) do as a business?",
+      "answer": "## Microsoft Corporation (MSFT) \u2014 Business Overview\n\nBased on the provided context, Microsoft **\"develops and supports software, services, devices, and solutions worldwide.\"**\n\nKey business segments and products mentioned include:\n\n- **Productivity & Business Processes segment**, which offers:\n  - **Enterprise/Commercial:** Microsoft 365 (commercial), Enterprise Mobility + Security, Windows Commercial, Power BI, Exchange, SharePoint, Microsoft Teams, Security & Compliance, and Copilot\n  - **On-premises products:** Windows Commercial and Office licensed services\n  - **Consumer:** Microsoft 365 consumer products and cloud services\n\nMicrosoft is classified as a **Software - Infrastructure** company in the **Technology** sector, with a market cap of approximately **$2.86 trillion** and a P/E ratio of **22.97**.\n\n> *Note: The context provides only a partial description of Microsoft's full business operations, as the company overview appears to be truncated in the source data.*",
+      "ground_truth": "Microsoft is a Technology company that develops software, cloud services (Azure), productivity tools, and related hardware.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": null,
+        "answer_relevancy": 0.7777,
+        "context_precision": 1.0,
+        "context_recall": 0.0,
+        "judge_score": 0.9334
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 4,
+        "citation_quality": 5,
+        "overall": 4.667,
+        "rationale": "The answer accurately reflects the retrieved context with specific product names (Microsoft 365, Azure implied through cloud services, Teams, Power BI) and business segments; it appropriately notes the truncated context while providing comprehensive detail from available data, though it could have explicitly mentioned 'cloud services' as a primary business line."
+      }
+    },
+    {
+      "id": "fact-003",
+      "category": "factual",
+      "question": "What kind of products does NVIDIA (NVDA) make?",
+      "answer": "## NVIDIA's Products & Business Segments\n\nBased on the provided context, NVIDIA operates through **two main segments**:\n\n### 1. Compute & Networking\n- Data center accelerated computing and networking platforms\n- **Artificial intelligence (AI) solutions and software**\n- Automotive platforms\n- Autonomous and electric vehicle solutions (including software)\n\n### 2. Graphics\n- **GeForce** products (note: the context is truncated here, but GeForce is mentioned as part of this segment)\n\n### Company Overview\nNVIDIA positions itself primarily as a **\"data center scale AI infrastructure company\"**, operating across multiple geographies including the United States, Taiwan, China, Hong Kong, and Europe.\n\n> \u26a0\ufe0f *The context provided is partially truncated regarding the full details of the Graphics segment, so a complete description of all graphics products cannot be confirmed from this data alone.*",
+      "ground_truth": "NVIDIA is a semiconductor company that designs GPUs and computing hardware used for graphics, gaming, data centers, and AI.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.7349,
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "judge_score": 0.8
+      },
+      "judge_detail": {
+        "accuracy": 4,
+        "completeness": 3,
+        "citation_quality": 5,
+        "overall": 4.0,
+        "rationale": "The answer accurately identifies NVIDIA's two main business segments and key products from the context (Compute & Networking, Graphics, GeForce, AI solutions), with proper citations and acknowledgment of truncation; however, it misses the gaming aspect mentioned in the ground-truth answer and doesn't fully address the Graphics segment due to context limitations."
+      }
+    },
+    {
+      "id": "fact-004",
+      "category": "factual",
+      "question": "Which cloud platform does Amazon (AMZN) operate?",
+      "answer": "Based on the company information provided, Amazon operates **Amazon Web Services (AWS)**, which is one of the company's three business segments alongside **North America** and **International**.",
+      "ground_truth": "Amazon operates Amazon Web Services (AWS), its cloud computing platform, alongside its e-commerce business.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.4823,
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant correctly identifies AWS as Amazon's cloud platform with direct citation from the retrieved context stating 'The company operates through three segments: North America, International, and Amazon Web Services (AWS),' matching the ground-truth answer precisely."
+      }
+    },
+    {
+      "id": "fact-005",
+      "category": "factual",
+      "question": "What industry is Tesla (TSLA) in?",
+      "answer": "Based on the provided context, Tesla (TSLA) is in the **Auto Manufacturers** industry, classified under the **Consumer Cyclical** sector.",
+      "ground_truth": "Tesla is in the automotive industry (Consumer Cyclical), producing electric vehicles and related energy products.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9107,
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant correctly identifies Tesla as being in Auto Manufacturers within the Consumer Cyclical sector, directly matching the ground-truth answer and precisely citing the retrieved context that states 'Tesla, Inc. (TSLA) is a Consumer Cyclical company in Auto Manufacturers.'"
+      }
+    },
+    {
+      "id": "fact-006",
+      "category": "factual",
+      "question": "How does Meta (META) primarily make money?",
+      "answer": "Based on the provided context, the information about Meta's revenue model is **limited**. The context only describes that Meta:\n\n- **Operates through two segments**: **Family of Apps (FoA)** and **Reality Labs (RL)**\n- The **FoA segment** offers products including **Facebook** (with features like feed, reels, stories, groups, and marketplace) along with other connectivity products across mobile devices, PCs, VR headsets, and AI glasses\n\nHowever, the context does **not explicitly detail Meta's specific revenue streams** (e.g., advertising revenue, subscription fees, etc.). To fully answer how Meta primarily makes money, additional context \u2014 such as income statements or revenue breakdowns \u2014 would be needed.\n\nWhat I can confirm is that its **market cap stands at ~$1.47 trillion** with a **P/E ratio of 21.1**, suggesting it is a profitable, large-scale company, but the *source* of that revenue is not sufficiently described in the provided data.",
+      "ground_truth": "Meta operates in Communication Services and earns revenue primarily from advertising across its social media platforms.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": 0.7273,
+        "answer_relevancy": 0.0,
+        "context_precision": 1.0,
+        "context_recall": 0.5,
+        "judge_score": 0.4666
+      },
+      "judge_detail": {
+        "accuracy": 2,
+        "completeness": 2,
+        "citation_quality": 3,
+        "overall": 2.333,
+        "rationale": "The assistant correctly identifies that the context lacks explicit revenue details but fails to acknowledge that the ground-truth answer (advertising as primary revenue source) is a well-established fact that should be stated with appropriate caveats about the retrieved context's limitations; the refusal is overly cautious given the question's straightforward nature."
+      }
+    },
+    {
+      "id": "fact-007",
+      "category": "factual",
+      "question": "What sector is JPMorgan (JPM) in?",
+      "answer": "Based on the provided context, JPMorgan Chase & Co. (JPM) is in the **Financial Services** sector, specifically classified under the **Banks - Diversified** industry.",
+      "ground_truth": "JPMorgan is in the Financial Services sector, providing banking and financial services.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8524,
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant correctly identifies JPM as being in Financial Services with the specific sub-classification of Banks - Diversified, directly citing the retrieved context and matching the ground-truth answer with appropriate detail."
+      }
+    },
+    {
+      "id": "fact-008",
+      "category": "factual",
+      "question": "What does Coca-Cola (KO) sell?",
+      "answer": "Based on the company information provided, Coca-Cola (KO) manufactures and sells a variety of **nonalcoholic beverages** both in the United States and internationally, including:\n\n- **Trademark Coca-Cola** and sparkling soft drinks/flavors\n- **Water, sports, coffee, and tea** products\n- **Juice, value-added dairy, and plant-based beverages**\n- **Emerging beverages**\n- **Beverage concentrates and syrups**\n- **Fountain syrups** supplied to fountain retailers such as restaurants and convenience stores",
+      "ground_truth": "Coca-Cola is a Consumer Defensive company that produces and sells non-alcoholic beverages.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.7769,
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant accurately and comprehensively answers what Coca-Cola sells by directly citing specific product categories from the retrieved context, matching the ground-truth answer that KO produces and sells non-alcoholic beverages, with detailed enumeration of product types."
+      }
+    },
+    {
+      "id": "fact-009",
+      "category": "factual",
+      "question": "What is Exxon Mobil's (XOM) line of business?",
+      "answer": "Based on the provided context, Exxon Mobil Corporation (XOM) is an **integrated oil & gas company** in the **Energy sector** that operates across four main business segments:\n\n1. **Upstream** \u2013 Exploration and production of crude oil and natural gas in the U.S., Canada, and internationally\n2. **Energy Products** \u2013 Fuels, aromatics, catalysts, and licensing services\n3. **Chemical Products** \u2013 Manufacturing and selling olefins and polyolefins\n4. **Specialty Products** \u2013 (mentioned but not fully detailed in the context)\n\nThe company has a market cap of approximately **$587.0 billion** and trades with a P/E ratio of **23.84**.",
+      "ground_truth": "Exxon Mobil is an Energy company engaged in oil and gas exploration, production, and refining.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8375,
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant accurately describes XOM's line of business as an integrated oil & gas energy company with specific segment details (Upstream, Energy Products, Chemical Products, Specialty Products) directly from the retrieved context, matching the ground-truth answer while providing comprehensive detail with proper citations."
+      }
+    },
+    {
+      "id": "fact-010",
+      "category": "factual",
+      "question": "What was the most recent weekly closing price for AAPL?",
+      "answer": "Based on the provided data, the most recent weekly closing price for AAPL was **$298.52** for the week ending **June 21, 2026**, representing a weekly change of **+1.5%** on volume of **98,967,358** shares.",
+      "ground_truth": "A specific dollar closing price for the most recent week in the data, cited from the latest weekly price record for AAPL.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 1.0,
+        "context_precision": 1.0,
+        "context_recall": 0.0,
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant correctly identified the most recent weekly closing price ($298.52) from the latest dated record (2026-06-21), with accurate supporting details (date, weekly change, volume) directly cited from the context."
+      }
+    },
+    {
+      "id": "fact-011",
+      "category": "factual",
+      "question": "What 52-week price range is reported for NVDA?",
+      "answer": "Based on the data provided in the context, **there is no 52-week price range explicitly reported** for NVDA.\n\nWhat I can do is identify the **price extremes across the 8 weekly data points available**:\n\n- **Highest high:** $236.26 (week ending 2026-05-17)\n- **Lowest low:** $166.82 (week ending 2026-03-29)\n\nHowever, this only spans a partial date range (approximately March\u2013June 2026) and does **not** constitute a full 52-week range. I cannot provide a true 52-week high/low without additional historical data beyond what's included in the context.",
+      "ground_truth": "The 52-week low and high dollar figures for NVDA as reported in the company information.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0,
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant correctly identified that the retrieved context does not contain an explicit 52-week price range for NVDA, appropriately refused to fabricate an answer, and transparently explained what data was available (weekly highs/lows from March-June 2026) while clarifying why this does not constitute a true 52-week range, with specific price citations ($236.26 and $166.82) and dates."
+      }
+    },
+    {
+      "id": "fact-012",
+      "category": "factual",
+      "question": "What trading volume is reported for MSFT in the most recent week?",
+      "answer": "Based on the provided context, the most recent week for MSFT is the **week ending June 14, 2026**, which reported a trading volume of **182,069,900 shares**. This was also one of the higher-volume weeks in the dataset, accompanied by a significant weekly decline of **-5.7%** (closing at $390.74 from an open of $414.14).",
+      "ground_truth": "A specific weekly trading-volume figure for MSFT cited from the latest weekly price record.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9282,
+        "context_precision": 1.0,
+        "context_recall": 0.0,
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant correctly identified the most recent week (2026-06-14) from the retrieved context and accurately cited the exact trading volume (182,069,900) with supporting details (open, close, weekly change) that ground the answer in specific data points."
+      }
+    },
+    {
+      "id": "cmp-001",
+      "category": "comparison",
+      "question": "Between XOM and KO, which one is in the energy sector?",
+      "answer": "Based on the provided context, **XOM (Exxon Mobil Corporation)** is in the energy sector. Specifically, it is classified as an **Oil & Gas Integrated** company in the **Energy** sector.\n\nThere is no data provided in the context for **KO**, so no comparison can be made regarding KO's sector classification.",
+      "ground_truth": "Exxon Mobil (XOM) is the energy company; Coca-Cola (KO) is a consumer defensive beverage company.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.7657,
+        "context_precision": 1.0,
+        "context_recall": 0.5,
+        "judge_score": 0.8
+      },
+      "judge_detail": {
+        "accuracy": 4,
+        "completeness": 3,
+        "citation_quality": 5,
+        "overall": 4.0,
+        "rationale": "The assistant correctly identifies XOM as the energy company with precise sector classification ('Energy company in Oil & Gas Integrated') directly from context, but incompleteness arises from not addressing KO despite the question asking for a comparison between both companies; the refusal regarding KO is appropriately grounded."
+      }
+    },
+    {
+      "id": "cmp-002",
+      "category": "comparison",
+      "question": "Which company operates AWS, Amazon (AMZN) or Google (GOOGL)?",
+      "answer": "Based on the context provided, **Amazon.com, Inc. (AMZN)** operates AWS (Amazon Web Services). The company profile explicitly states that Amazon \"operates through three segments: **North America, International, and Amazon Web Services (AWS)**.\"",
+      "ground_truth": "Amazon (AMZN) operates AWS. Google (GOOGL) operates Google Cloud, a different platform.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.738,
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant correctly identifies Amazon as the AWS operator with direct citation from the company profile stating AWS is one of Amazon's three operating segments, fully addressing the question with specific grounding in the retrieved context."
+      }
+    },
+    {
+      "id": "cmp-003",
+      "category": "comparison",
+      "question": "Between NVDA and KO, which is the semiconductor company?",
+      "answer": "Based on the provided context, **NVDA (NVIDIA Corporation)** is the semiconductor company. It is explicitly identified in the company info as operating in the **Semiconductors** industry within the Technology sector.\n\nThere is **no information about KO** in the provided context, so no comparison can be made regarding KO's industry classification.",
+      "ground_truth": "NVIDIA (NVDA) is the semiconductor company; Coca-Cola (KO) is a beverage company.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.5,
+        "context_recall": 0.5,
+        "judge_score": 0.9334
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 4,
+        "citation_quality": 5,
+        "overall": 4.667,
+        "rationale": "The assistant correctly identifies NVDA as the semiconductor company with direct citation ('explicitly identified in the company info as operating in the Semiconductors industry'), appropriately notes the absence of KO data, and accurately answers the core question, though it could have been more complete by acknowledging that KO is typically a beverage company based on general knowledge or by noting this would require additional context."
+      }
+    },
+    {
+      "id": "cmp-004",
+      "category": "comparison",
+      "question": "Which of JPM and TSLA is a bank?",
+      "answer": "Based on the provided context, **JPM (JPMorgan Chase & Co.)** is the bank. It is explicitly described as operating in the **Banks - Diversified** sector within Financial Services, and it \"operates as a bank and financial holding company.\"\n\nThere is **no information about TSLA** in the provided context, so no comparison can be made regarding that company.",
+      "ground_truth": "JPMorgan (JPM) is the bank; Tesla (TSLA) is an automotive company.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 1.0,
+        "context_recall": 0.5,
+        "judge_score": 0.8
+      },
+      "judge_detail": {
+        "accuracy": 4,
+        "completeness": 3,
+        "citation_quality": 5,
+        "overall": 4.0,
+        "rationale": "The assistant correctly identifies JPM as a bank with strong citations from the context, but incompleteness arises from not addressing TSLA (though this reflects context limitations rather than assistant error); accuracy is not perfect because the ground truth specifies TSLA is automotive, which the assistant doesn't confirm or deny."
+      }
+    },
+    {
+      "id": "cmp-005",
+      "category": "comparison",
+      "question": "Comparing AAPL and MSFT, what sector do they share?",
+      "answer": "Based on the provided context, I can only partially answer this question.\n\nFor **Microsoft (MSFT)**, the context explicitly states it is in the **Technology** sector, specifically **Software - Infrastructure**.\n\nHowever, for **Apple (AAPL)**, the context only contains **price/trading data** \u2014 no company profile or sector information is provided. Therefore, I cannot confirm AAPL's sector classification from the available data alone.\n\nTo make a direct sector comparison, additional company information for AAPL would be needed.",
+      "ground_truth": "Both Apple (AAPL) and Microsoft (MSFT) are in the Technology sector.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "judge_score": 0.5334
+      },
+      "judge_detail": {
+        "accuracy": 2,
+        "completeness": 2,
+        "citation_quality": 4,
+        "overall": 2.667,
+        "rationale": "The assistant correctly identified MSFT's Technology sector from context but failed to recognize that the ground-truth answer is well-established common knowledge (both are Technology companies), leading to an unnecessary refusal that contradicts the reference answer; citation quality is good for what was attempted, but accuracy and completeness suffer from over-strict adherence to context when the answer is factually correct and verifiable."
+      }
+    },
+    {
+      "id": "cmp-006",
+      "category": "comparison",
+      "question": "Which had a larger weekly change in the most recent week, AAPL or MSFT?",
+      "answer": "Based on the provided context, I can only speak to **AAPL's** most recent week (ending **2026-06-21**), which showed a weekly change of **+1.5%** (open $294.12 \u2192 close $298.52).\n\nHowever, **there is no MSFT data in the provided context**, so I cannot make a comparison between the two stocks. To answer your question accurately, MSFT data would need to be included.",
+      "ground_truth": "A comparison of the two most recent weekly percentage changes for AAPL and MSFT, naming whichever is larger, with both figures cited from context.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0,
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant correctly identified that MSFT data was absent from the context, appropriately refused to make a comparison, and accurately cited AAPL's most recent weekly change (+1.5% for week ending 2026-06-21) with specific price points, demonstrating proper adherence to the instruction to answer only from retrieved context."
+      }
+    },
+    {
+      "id": "cmp-007",
+      "category": "comparison",
+      "question": "Between NVDA and XOM, which reports a higher P/E ratio?",
+      "answer": "Based on the provided context, **I can only speak to NVDA's P/E ratio**, which is **31.68**.\n\nThere is **no data for XOM (ExxonMobil)** in the provided context, so a comparison between the two cannot be made. To answer this question accurately, XOM's P/E ratio data would be needed.",
+      "ground_truth": "A comparison of the reported P/E ratios for NVDA and XOM, naming whichever is higher, with both values cited from context.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.0,
+        "context_precision": 0.0,
+        "context_recall": 0.0,
+        "judge_score": 0.8
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 2,
+        "citation_quality": 5,
+        "overall": 4.0,
+        "rationale": "The assistant correctly identifies and cites NVDA's P/E ratio (31.675343) from context but appropriately refuses to make a comparison due to missing XOM data; however, the answer is incomplete as it does not fully address the comparative nature of the question that requires both data points."
+      }
+    },
+    {
+      "id": "cmp-008",
+      "category": "comparison",
+      "question": "Which is in Communication Services, META or JPM?",
+      "answer": "Based on the provided context, **META** (Meta Platforms, Inc.) is in Communication Services \u2014 specifically categorized under **Internet Content & Information**.\n\nJPM (JPMorgan Chase & Co.), by contrast, is in **Financial Services** under Banks - Diversified.",
+      "ground_truth": "Meta (META) is in Communication Services; JPMorgan (JPM) is in Financial Services.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.6978,
+        "context_precision": 1.0,
+        "context_recall": 1.0,
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant correctly identifies META as Communication Services and JPM as Financial Services, directly citing the sector classifications from the retrieved context with specific subsector details (Internet Content & Information for META, Banks - Diversified for JPM)."
+      }
+    },
+    {
+      "id": "trend-001",
+      "category": "trend",
+      "question": "Describe the overall price trend for NVDA over the available period.",
+      "answer": "## NVDA Price Trend Analysis\n\n**Period Covered:** Week ending March 22, 2026 through June 7, 2026\n\n### Overall Trajectory\nThe data reveals a **volatile but broadly upward trend**, with a clear **trough-to-peak-to-pullback pattern**:\n\n---\n\n### Phase 1: Decline & Bottom (Late March)\nNVDA started under selling pressure, falling through two consecutive down weeks:\n- Week of **Mar 22**: -6.7% (closed $172.50)\n- Week of **Mar 29**: -5.5% (closed $167.32) \u2190 *Period low close*\n\n### Phase 2: Strong Recovery (April)\nA sharp reversal drove four consecutive weekly gains:\n- Week of **Apr 5**: +5.1% \u2192 $177.18\n- Week of **Apr 12**: +6.5% \u2192 $188.41\n- Week of **Apr 26**: +4.1% \u2192 $208.03\n\n### Phase 3: Peak & Pullback (May\u2013June)\nThe stock reached its **peak close of $225.06** (week of May 17, +5.3%), then reversed:\n- Week of **May 31**: -2.5% \u2192 $210.89\n- Week of **Jun 7**: -4.8% \u2192 $205.10\n\n---\n\n### Key Summary\n| Metric | Value |\n|---|---|\n| Period Low Close | $167.32 (Mar 29) |\n| Period High Close | $225.06 (May 17) |\n| Net Change | **+$37.78 (+22.6%)** from trough to final close |\n\nDespite the late pullback, NVDA closed the period significantly above its March lows, reflecting a **net bullish trend** over the full timeframe.",
+      "ground_truth": "A summary of whether NVDA's weekly closing prices generally rose, fell, or stayed flat across the available weeks, grounded in the weekly records.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": null,
+        "answer_relevancy": 0.8451,
+        "context_precision": 0.0,
+        "context_recall": 0.0,
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant accurately describes NVDA's overall upward trend with specific weekly closing prices, percentage changes, and dates from the retrieved context, correctly identifying the March decline, April recovery, May peak, and June pullback, with precise numerical grounding throughout."
+      }
+    },
+    {
+      "id": "trend-002",
+      "category": "trend",
+      "question": "Has AAPL trended up or down over the weeks of data available?",
+      "answer": "## AAPL Trend Analysis\n\nBased on the available weekly data, AAPL has shown a **clear upward trend** over the period covered.\n\n### Weekly Closing Prices (Chronological):\n\n| Week Ending | Close | Weekly Change |\n|-------------|-------|---------------|\n| Apr 5 | $255.68 | +2.3% |\n| Apr 12 | $260.24 | +1.5% |\n| Apr 19 | $269.98 | +4.0% |\n| May 10 | $293.05 | +4.9% |\n| May 17 | $300.23 | +2.8% |\n| May 31 | $312.06 | +0.8% |\n| Jun 7 | $307.34 | -0.7% |\n| Jun 21 | $298.52 | +1.5% |\n\n### Key Takeaways:\n- **Overall gain:** From $255.68 (Apr 5) to $298.52 (Jun 21), representing approximately **+16.8%** over the period\n- **7 out of 8 weeks** recorded positive weekly changes\n- The **only down week** was Jun 7 (-0.7%, closing at $307.34)\n- The **strongest week** was May 10 (+4.9%)\n- The stock peaked around **$312.06** (May 31) before pulling back slightly in June\n\n> \u26a0\ufe0f *Note: Data gaps exist between Apr 19 and May 10, and between May 17 and May 31, so the full picture may not be complete.*",
+      "ground_truth": "A directional read of AAPL's weekly closes from the earliest to the latest available week, stating up, down, or roughly flat.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": null,
+        "answer_relevancy": 0.7881,
+        "context_precision": 0.0,
+        "context_recall": 0.0,
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant correctly identifies an upward trend from $255.68 to $298.52 (+16.8%), accurately cites all 8 weekly closes with dates and changes from the context, notes the single down week, and appropriately flags data gaps without overstating confidence."
+      }
+    },
+    {
+      "id": "trend-003",
+      "category": "trend",
+      "question": "Based on weekly changes, has TSLA been more volatile or stable recently?",
+      "answer": "## TSLA Recent Volatility Analysis\n\nBased on the weekly data provided, TSLA has shown **significant volatility** across the observed period, though with a notable shift in character recently.\n\n### The Volatile Stretch (Late March \u2013 Late April 2026)\nFour consecutive weeks of notable swings:\n| Week Ending | Weekly Change |\n|-------------|--------------|\n| Mar 22 | **-7.0%** |\n| Mar 29 | **-3.0%** |\n| Apr 5 | **-1.4%** |\n| Apr 12 | **-3.8%** |\n| Apr 26 | **-6.5%** |\n\nThis period saw persistent **downside volatility**, with the stock dropping from a high of $403.07 to a low of $337.24.\n\n### The Recent Recovery (Early\u2013Late May 2026)\n| Week Ending | Weekly Change |\n|-------------|--------------|\n| May 3 | **+5.0%** |\n| May 10 | **+9.8%** |\n| May 24 | **+1.6%** |\n\n### Conclusion\nTSLA has been **highly volatile overall** \u2014 swings of 3\u201310% in either direction are frequent. However, the **most recent weeks show a strong upward trend**, with the stock recovering from ~$337 lows to $426.01. The +9.8% single-week move (week of May 10) underscores that volatility remains elevated, just now skewing **to the upside**.",
+      "ground_truth": "An assessment of TSLA's week-to-week percentage changes describing the degree of volatility, grounded in the weekly records.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": null,
+        "answer_relevancy": 0.727,
+        "context_precision": 0.0,
+        "context_recall": 0.0,
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant accurately characterizes TSLA as volatile based on specific weekly percentage changes from the context (-7.0%, -3.8%, -6.5%, +9.8%, +5.0%), correctly identifies the shift from downside to upside volatility, and grounds all claims in precise data points with proper citations."
+      }
+    },
+    {
+      "id": "trend-004",
+      "category": "trend",
+      "question": "What was the highest weekly high recorded for AMZN in the data?",
+      "answer": "Based on the provided data, the highest weekly high recorded for AMZN was **$274.75**, achieved during the week ending **2026-05-31**.\n\nHere's a quick comparison of the top weekly highs across all weeks in the dataset:\n\n| Week Ending | Weekly High |\n|-------------|-------------|\n| 2026-05-31 | **$274.75** \u2713 |\n| 2026-05-03 | $273.88 |\n| 2026-05-17 | $273.63 |\n| 2026-05-24 | $269.79 |\n| 2026-04-26 | $264.50 |\n| 2026-06-07 | $266.63 |\n| 2026-06-14 | $250.43 |\n| 2026-04-12 | $240.43 |",
+      "ground_truth": "The largest weekly high dollar figure for AMZN among the available weekly records.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9005,
+        "context_precision": 0.0,
+        "context_recall": 0.0,
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant correctly identified $274.75 as the highest weekly high from the week ending 2026-05-31, with accurate supporting data and a comprehensive comparison table grounding the answer in specific price points from the context."
+      }
+    },
+    {
+      "id": "trend-005",
+      "category": "trend",
+      "question": "Did META have any down weeks in the available data?",
+      "answer": "## META Down Weeks Analysis\n\nBased on the available data, **yes \u2014 META had one down week** out of the eight weeks provided:\n\n| Week Ending | Open | Close | Weekly Change |\n|-------------|------|-------|---------------|\n| **2026-03-22** | $627.41 | $593.11 | **-5.5%** |\n\nThis was the only negative week in the dataset, with META dropping **$34.30** from open to close, hitting a weekly low of $586.71 on elevated volume of **56.5M shares**.\n\nAll other seven weeks in the available data showed **positive returns**, ranging from +0.2% (week ending 2026-05-24) to +9.4% (week ending 2026-04-19).",
+      "ground_truth": "A statement of whether any weekly change for META was negative, citing the relevant week(s) if so.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": 0.9091,
+        "answer_relevancy": 0.8035,
+        "context_precision": 0.1667,
+        "context_recall": 1.0,
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant correctly identified the single down week (2026-03-22 with -5.5% change), provided specific data points (opening price $627.41, closing price $593.11, volume 56,537,700), and accurately characterized all other weeks as positive, directly grounding the answer in the retrieved context."
+      }
+    },
+    {
+      "id": "trend-006",
+      "category": "trend",
+      "question": "How did GOOGL's closing price move from the first to the last available week?",
+      "answer": "## GOOGL Closing Price Movement: First to Last Week\n\nBased on the available data, the chronological range spans from **week ending March 22, 2026** to **week ending June 21, 2026**.\n\n| Week Ending | Closing Price |\n|-------------|--------------|\n| March 22, 2026 (first) | $300.82 |\n| June 21, 2026 (last) | $364.48 |\n\n### Net Change\n- **Absolute gain:** +$63.66\n- **Percentage gain:** approximately **+21.2%** over the ~13-week period\n\n### Notable Trajectory\nThe stock climbed significantly through April, with three consecutive weeks of strong gains (+7.0%, +7.2%, +7.7%), peaking near a high of **$408.37** (week of May 24), before pulling back in subsequent weeks through June, ultimately settling at **$364.48** by the final available week.",
+      "ground_truth": "A comparison of GOOGL's earliest and latest weekly closing prices, stating the net direction and rough magnitude.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.946,
+        "context_precision": 0.0,
+        "context_recall": 0.0,
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant correctly identified the earliest (March 22: $300.82) and latest (June 21: $364.48) weekly closing prices from the context, accurately calculated the net change (+$63.66, +21.2%), and supported the answer with specific data points (dates, prices, weekly percentages) directly from the retrieved context."
+      }
+    },
+    {
+      "id": "trend-007",
+      "category": "trend",
+      "question": "Summarize KO's recent weekly performance.",
+      "answer": "## KO (Coca-Cola) Weekly Performance Summary\n\nBased on the available data spanning **March 22 \u2013 June 14, 2026**, here is a summary of KO's recent weekly performance:\n\n---\n\n### Weekly Breakdown (Chronological)\n\n| Week Ending | Close | Weekly Change |\n|---|---|---|\n| Mar 22, 2026 | $74.27 | **-4.2%** |\n| Apr 5, 2026 | $76.23 | +1.0% |\n| Apr 12, 2026 | $76.97 | +1.1% |\n| Apr 26, 2026 | $76.14 | +1.1% |\n| May 10, 2026 | $77.92 | +0.5% |\n| May 17, 2026 | $80.30 | +3.4% |\n| May 24, 2026 | $80.96 | +0.8% |\n| Jun 14, 2026 | $82.09 | **+4.2%** |\n\n---\n\n### Key Takeaways\n- **Overall trend is bullish**, recovering strongly from the Mar 22 low of $74.27 to a recent high close of **$82.09** on Jun 14.\n- The **only down week** in this period was Mar 22 (-4.2%), which appears to have been a notable pullback.\n- The **strongest up week** was Jun 14 (+4.2%, volume 80.3M), suggesting significant buying momentum.\n- Volume has generally **increased alongside price gains**, with the Jun 14 week seeing the highest volume at **80,323,200 shares**.",
+      "ground_truth": "A concise summary of KO's weekly closes and changes over the available period, grounded in the records.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": null,
+        "answer_relevancy": 0.6611,
+        "context_precision": 0.0,
+        "context_recall": 0.0,
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant accurately summarizes all eight weeks of KO data from the context with correct prices, dates, and percentage changes; presents the information in a clear chronological table; and grounds every claim in specific data points (closing prices, weekly changes, volumes) from the retrieved records."
+      }
+    },
+    {
+      "id": "trend-008",
+      "category": "trend",
+      "question": "Which week showed the largest single-week move for XOM?",
+      "answer": "## Largest Single-Week Move for XOM\n\nBased on the provided data, the week ending **March 29, 2026** showed the largest single-week move for XOM with a **+9.5% weekly change**.\n\n### Key Details:\n- **Open:** $155.07\n- **Close:** $169.84\n- **High:** $170.08\n- **Low:** $153.97\n- **Volume:** 117,308,900\n\nThis was also accompanied by the **highest volume** in the dataset at over 117M shares traded, suggesting strong conviction behind the move.\n\n### Runner-Up:\nThe week ending **May 17, 2026** came in a close second with a **+8.9% gain** (open $145.04 \u2192 close $157.92), also on elevated volume of 86.3M shares.",
+      "ground_truth": "The week with the largest absolute weekly percentage change for XOM, citing the date and figure.",
+      "n_contexts": 8,
+      "metrics": {
+        "faithfulness": null,
+        "answer_relevancy": 0.9182,
+        "context_precision": 0.0,
+        "context_recall": 0.0,
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant correctly identified the week ending 2026-03-29 as having the largest single-week move (+9.5%), provided all relevant data points from the context, and properly grounded the answer in specific prices, dates, and percentages while also noting the runner-up for context."
+      }
+    },
+    {
+      "id": "refuse-001",
+      "category": "refusal",
+      "question": "What is Apple's next dividend payment date?",
+      "answer": "Based on the context provided, **there is no information about Apple's dividend payment dates**. The data available only includes stock price history (weekly OHLCV data) and general company information, but does not contain any dividend-related details.\n\nFor accurate dividend payment information, I'd recommend checking Apple's investor relations website or a financial data provider directly.",
+      "ground_truth": "The assistant should say the context does not contain dividend payment dates and that it cannot provide this information.",
+      "n_contexts": 8,
+      "metrics": {
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant correctly identified that the retrieved context lacks dividend payment information and appropriately refused to speculate, matching the ground-truth expectation to state insufficient data."
+      }
+    },
+    {
+      "id": "refuse-002",
+      "category": "refusal",
+      "question": "What will NVDA's stock price be next month?",
+      "answer": "I cannot predict NVDA's future stock price. The context provides **historical weekly data**, not forward-looking forecasts, and making price predictions would require speculation beyond what the data supports.\n\nWhat the data **does** show is NVDA's recent trend:\n\n- The stock climbed from **$167.32** (week ending 3/29) to a peak close of **$225.06** (week ending 5/17)\n- It has since pulled back, closing at **$205.19** (week ending 6/14), representing roughly a **-8.8% decline** from that peak\n- Recent weeks have shown consecutive negative returns: **-2.5%**, **-4.8%**, and **-2.4%**\n\nHowever, past performance does not predict future prices, and I have no forecast data in the provided context. For price targets, I'd recommend consulting analyst reports or financial forecasting tools.",
+      "ground_truth": "The assistant should decline to predict future prices and explain it can only report on the historical data in the context.",
+      "n_contexts": 8,
+      "metrics": {
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant correctly refused to predict future prices, explained the limitation of available data, and grounded the response in specific historical data points (dates, prices, percentages) from the context while clearly distinguishing between what can and cannot be answered."
+      }
+    },
+    {
+      "id": "refuse-003",
+      "category": "refusal",
+      "question": "What is the CEO's salary at Microsoft?",
+      "answer": "The provided context does not contain any information about Microsoft's CEO or their salary. The data available is limited to **stock price/trading data** and a brief **company description** covering business segments and financial metrics such as market cap ($2.86T) and P/E ratio (22.98).\n\nFor CEO compensation details, I'd recommend checking Microsoft's official proxy statement (DEF 14A) filed with the SEC.",
+      "ground_truth": "The assistant should state that executive compensation is not in the provided context and it cannot answer.",
+      "n_contexts": 8,
+      "metrics": {
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant correctly refused to answer, clearly identified what information is missing (CEO salary/compensation), and accurately described what the context contains (stock data and company description) with specific citations (market cap $2.86T, P/E ratio 22.98)."
+      }
+    },
+    {
+      "id": "refuse-004",
+      "category": "refusal",
+      "question": "Tell me about the stock performance of ZZZZ Corp.",
+      "answer": "I don't have any data on **ZZZZ Corp** in the provided context. The only stock covered in the available data is **Amazon (AMZN)**.\n\nIf you'd like, I can answer questions about AMZN's recent performance based on the data I do have. Just let me know!",
+      "ground_truth": "The assistant should say it has no data for ZZZZ Corp in the context and cannot provide information about it.",
+      "n_contexts": 8,
+      "metrics": {
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant correctly identified that ZZZZ Corp is not in the retrieved context, appropriately refused to provide information, and clearly explained what data is actually available."
+      }
+    },
+    {
+      "id": "refuse-005",
+      "category": "refusal",
+      "question": "What was Apple's stock price back in 2010?",
+      "answer": "The provided context does not contain any data about Apple's stock price in 2010. The available data only covers weekly periods from **April 2026 through June 2026**, with the earliest data point being the week ending **April 5, 2026** (open: $249.84, close: $255.68).\n\nI cannot provide 2010 pricing information without risking inaccurate data.",
+      "ground_truth": "The assistant should state that the available data does not go back to 2010 and it cannot provide that historical price.",
+      "n_contexts": 8,
+      "metrics": {
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant correctly refused to answer, clearly explained the temporal gap between the requested year (2010) and available data (2026), and cited specific date ranges and data points from the context to justify the refusal."
+      }
+    },
+    {
+      "id": "refuse-006",
+      "category": "refusal",
+      "question": "Should I buy Tesla stock right now?",
+      "answer": "## Tesla Stock Analysis\n\nI can share some factual data points from the context, but I want to be transparent about the **significant limitations** here:\n\n### What the Context Tells Us About TSLA:\n- **Market Cap:** ~$1.51 trillion\n- **P/E Ratio:** 368.25 \u2014 this is **extremely elevated**, suggesting the stock is priced at a very high premium relative to earnings\n- **52-week range:** $288.77 \u2013 $498.83 \u2014 a wide range indicating **high volatility**\n\n### What I Cannot Tell You:\nThe context provides **no current TSLA price, recent price trend, volume data, or earnings information** \u2014 all critical inputs for a buy decision.\n\n### Important Disclaimer:\n**I am not a financial advisor and cannot recommend whether you should buy Tesla stock.** A proper investment decision would require:\n- Current price vs. valuation metrics\n- Your personal risk tolerance\n- Your investment timeline\n- Broader portfolio context\n\n### One Notable Data Point:\nThe P/E of **368x** is significantly above typical market averages (~20-25x), which many analysts would flag as a risk factor \u2014 but this alone is not sufficient basis for a decision.\n\n*Please consult a licensed financial advisor before making investment decisions.*",
+      "ground_truth": "The assistant should decline to give personalized investment advice and limit itself to describing the available data.",
+      "n_contexts": 8,
+      "metrics": {
+        "judge_score": 0.8666
+      },
+      "judge_detail": {
+        "accuracy": 4,
+        "completeness": 4,
+        "citation_quality": 5,
+        "overall": 4.333,
+        "rationale": "The assistant correctly declines personalized investment advice and appropriately grounds its response in specific data (P/E ratio of 368.25, market cap, 52-week range), while transparently acknowledging missing data and limitations; minor deduction only because it could have been slightly more explicit that no recommendation should be inferred from the available data."
+      }
+    },
+    {
+      "id": "refuse-007",
+      "category": "refusal",
+      "question": "What is Coca-Cola's debt-to-equity ratio?",
+      "answer": "Based on the context provided, **Coca-Cola's debt-to-equity ratio is not available**. The data provided for KO only includes:\n\n- **Market cap:** ~$345.4B\n- **P/E ratio:** 25.25\n- **52-week range:** $65.35 \u2013 $84.04\n\nDebt-to-equity ratio would require balance sheet data (total debt and shareholders' equity), which is not included in the provided context. I would recommend checking a financial data source such as SEC filings or a financial data provider for that specific metric.",
+      "ground_truth": "The assistant should state that the debt-to-equity ratio is not present in the provided context and it cannot answer.",
+      "n_contexts": 8,
+      "metrics": {
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant correctly refused to answer, clearly stated insufficient data, and specifically cited what information was available (market cap, P/E ratio, 52-week range) while explaining what was missing (balance sheet data needed for debt-to-equity calculation)."
+      }
+    },
+    {
+      "id": "refuse-008",
+      "category": "refusal",
+      "question": "What were JPMorgan's quarterly earnings per share last quarter?",
+      "answer": "The provided context does not contain any earnings per share (EPS) data for JPMorgan Chase. The available information only includes **weekly price and volume data**, along with general company information (market cap of ~$901.5B, P/E ratio of 16.1, and 52-week range of $269.72\u2013$337.77).\n\nTo find JPM's quarterly EPS figures, I'd recommend checking JPMorgan's investor relations page or a financial data provider like Bloomberg, Reuters, or SEC filings directly.",
+      "ground_truth": "The assistant should say earnings-per-share figures are not in the context and it cannot provide them.",
+      "n_contexts": 8,
+      "metrics": {
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant correctly identified that EPS data is absent from the context, appropriately refused to provide an answer, and clearly explained what information was available instead (weekly price/volume data and general company metrics)."
+      }
+    },
+    {
+      "id": "refuse-009",
+      "category": "refusal",
+      "question": "Compare the stock of AAPL with that of a company called Globex Industries.",
+      "answer": "## AAPL vs. Globex Industries Comparison\n\nI'm unable to make this comparison with the available data.\n\nWhile I have **detailed weekly data for AAPL** spanning from early April through late June 2026 (showing a price range of roughly **$245.28 to $316.94** with weekly changes ranging from **-0.7% to +5.3%**), I have **no data whatsoever for Globex Industries** in the provided context.\n\nTo perform a meaningful comparison, I would need Globex Industries' data such as:\n- Price history (open, close, high, low)\n- Trading volume\n- Weekly or periodic percentage changes\n\nPlease provide Globex Industries' market data and I'll be happy to conduct a thorough side-by-side analysis.",
+      "ground_truth": "The assistant can describe AAPL from the context but should state it has no data for Globex Industries and cannot compare.",
+      "n_contexts": 8,
+      "metrics": {
+        "judge_score": 1.0
+      },
+      "judge_detail": {
+        "accuracy": 5,
+        "completeness": 5,
+        "citation_quality": 5,
+        "overall": 5.0,
+        "rationale": "The assistant correctly refused to compare and explicitly stated insufficient data for Globex Industries while providing specific AAPL data points (price range $245.28-$316.94, weekly changes -0.7% to +5.3%, date range April-June 2026) to ground the refusal."
+      }
+    }
+  ]
+}

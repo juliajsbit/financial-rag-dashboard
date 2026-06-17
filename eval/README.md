@@ -132,16 +132,22 @@ tolerated decrease vs baseline) and a `floor` (absolute minimum):
 
 | metric | max drop | floor |
 | --- | --- | --- |
-| faithfulness | 0.03 | 0.80 |
-| answer_relevancy | 0.05 | 0.75 |
-| context_precision | 0.05 | 0.70 |
-| context_recall | 0.05 | 0.70 |
-| judge_score | 0.05 | 0.70 |
+| faithfulness | 0.05 | 0.85 |
+| answer_relevancy | 0.10 | 0.45 |
+| context_precision | 0.12 | 0.40 |
+| context_recall | 0.12 | 0.25 |
+| judge_score | 0.07 | 0.80 |
+
+Floors sit below the observed baseline with headroom: the gate runs a small
+subset whose aggregate is a noisier estimate of the full baseline, so
+answer_relevancy and the context_* metrics (which run conservative here, see
+Results) get wider tolerance, while faithfulness and judge_score get tighter
+drops.
 
 ### Baseline
 
-`baseline_scores.json` holds the known-good aggregate. It ships with **seed
-placeholder** values - generate a real one after a reviewed run:
+`baseline_scores.json` holds the known-good aggregate from a full 37-question
+run. Refresh it after a reviewed improvement:
 
 ```bash
 python ci_eval.py --subset 2 --update-baseline
@@ -159,6 +165,49 @@ up Postgres (pgvector) + Redis, ingests a small ticker set, runs
 on regression. Needs the `ANTHROPIC_API_KEY` repo secret.
 
 **Demonstrating it:** open a PR that weakens the system prompt in `rag.py` (e.g.
-remove the "do not hallucinate" / "use ONLY the provided context" lines). The
-gate run shows faithfulness dropping and the job fails with a red diff comment. A
-PR that tightens the prompt passes.
+remove the "use ONLY the provided context" / "say so clearly - do not
+hallucinate" lines and tell the model to always give a number). The gate run
+fails with a red diff comment; a PR that keeps the guardrails passes. Captured
+examples are in [sample/](sample): [pr_comment_pass.md](sample/pr_comment_pass.md)
+and [pr_comment_fail.md](sample/pr_comment_fail.md).
+
+## Results
+
+From a full 37-question run (Claude generation + RAGAS on Sonnet, judge on
+Haiku). Full report: [sample/sample_report.md](sample/sample_report.md).
+
+| metric | score |
+| --- | --- |
+| faithfulness | 0.98 |
+| answer_relevancy | 0.61 |
+| context_precision | 0.60 |
+| context_recall | 0.46 |
+| judge_score | 0.94 |
+
+**Reading these honestly** (this is the point of the harness):
+
+- **faithfulness 0.98** and **judge_score 0.94** are the headline quality
+  signals - answers are grounded and the rubric judge rates them highly,
+  including correct refusals (refusals score ~0.99 with the judge).
+- **answer_relevancy** and the **context_* metrics are conservative here, by
+  design choice, not because retrieval is bad.** Two reasons: (1) to avoid an
+  OpenAI dependency, RAGAS uses the same local MiniLM embeddings as the app,
+  which score answer/question similarity lower and flag some correct short
+  comparison answers as "noncommittal" (0.0); (2) trend questions have
+  qualitative reference answers with no extractable claims, so RAGAS
+  context_recall/precision against them is near 0 even when the right weekly
+  price chunks were retrieved. Refusal questions are excluded from RAGAS
+  entirely and measured by the judge.
+
+The takeaway for an eval pipeline: pick metrics that match the question type,
+and don't read a single aggregate as "quality". A stronger embedding model would
+lift the RAGAS numbers; the trade-off here is zero external API dependency.
+
+## Compatibility notes
+
+- The harness calls the RAG chain with the **sync** LangChain API.
+  `langchain-postgres` only builds an async engine for an async driver, so
+  `ainvoke()` fails on the sync `psycopg` connection string.
+- On **Python 3.12+** (tested on 3.14), `nest_asyncio` - which RAGAS applies at
+  import - breaks `asyncio.wait_for`. [metrics.py](metrics.py) neutralizes it
+  before importing RAGAS, since the harness scores from a plain sync context.

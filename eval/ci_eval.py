@@ -24,12 +24,19 @@ from common import BASELINE_PATH, TRACKED_METRICS, aggregate, load_golden, selec
 
 # Regression policy. max_drop = largest tolerated decrease vs baseline.
 # floor = absolute minimum acceptable score regardless of baseline.
+#
+# Floors are set below the observed full-dataset baseline with headroom, because
+# the gate runs a small SUBSET (cost control) whose aggregate is a noisier
+# estimate of the full baseline. faithfulness and judge_score are the headline
+# quality metrics and get tighter drops; answer_relevancy and the context_*
+# metrics run conservative under local MiniLM embeddings + qualitative
+# references, so they get wider tolerance (see eval/README.md).
 THRESHOLDS: Dict[str, Dict[str, float]] = {
-    "faithfulness": {"max_drop": 0.03, "floor": 0.80},
-    "answer_relevancy": {"max_drop": 0.05, "floor": 0.75},
-    "context_precision": {"max_drop": 0.05, "floor": 0.70},
-    "context_recall": {"max_drop": 0.05, "floor": 0.70},
-    "judge_score": {"max_drop": 0.05, "floor": 0.70},
+    "faithfulness": {"max_drop": 0.05, "floor": 0.85},
+    "answer_relevancy": {"max_drop": 0.10, "floor": 0.45},
+    "context_precision": {"max_drop": 0.12, "floor": 0.40},
+    "context_recall": {"max_drop": 0.12, "floor": 0.25},
+    "judge_score": {"max_drop": 0.07, "floor": 0.80},
 }
 
 
@@ -120,8 +127,11 @@ def render_comment(passed: bool, findings, meta: Dict) -> str:
         icon = {"ok": "🟢", "fail": "🔴", "missing": "⚪"}.get(f["status"], "")
         suffix = f" ({f['note']})" if f["note"] else ""
         lines.append(f"| {f['metric']} | {base} | {cur} | {delta} | {icon} {f['status']}{suffix} |")
-    lines += ["", "_Thresholds: faithfulness may not drop > 0.03; other metrics > 0.05; "
-              "all metrics have an absolute floor._"]
+    rules = ", ".join(
+        f"{m} (drop>{THRESHOLDS[m]['max_drop']:.2f} or <{THRESHOLDS[m]['floor']:.2f})"
+        for m in TRACKED_METRICS if m in THRESHOLDS
+    )
+    lines += ["", f"_Fails on: {rules}._"]
     return "\n".join(lines)
 
 
