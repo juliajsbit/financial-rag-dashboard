@@ -1,0 +1,265 @@
+{
+  "description": "Golden evaluation set for the financial-rag-dashboard RAG pipeline. Each entry pairs a question with a reference answer and the tickers whose ingested data should answer it. Categories: factual (company-info lookups), comparison (across two tickers), trend (qualitative read of weekly price history), refusal (insufficient data / out of scope / no speculation). Price-specific reference answers describe the expected content/behavior rather than a fixed dollar figure, because the live figures depend on the ingestion date.",
+  "tickers_assumed_ingested": ["AAPL", "MSFT", "NVDA", "GOOGL", "AMZN", "TSLA", "META", "JPM", "KO", "XOM"],
+  "entries": [
+    {
+      "id": "fact-001",
+      "category": "factual",
+      "question": "What sector does Apple (AAPL) operate in?",
+      "ground_truth_answer": "Apple operates in the Technology sector, specifically consumer electronics and related software and services.",
+      "relevant_tickers": ["AAPL"]
+    },
+    {
+      "id": "fact-002",
+      "category": "factual",
+      "question": "What does Microsoft (MSFT) do as a business?",
+      "ground_truth_answer": "Microsoft is a Technology company that develops software, cloud services (Azure), productivity tools, and related hardware.",
+      "relevant_tickers": ["MSFT"]
+    },
+    {
+      "id": "fact-003",
+      "category": "factual",
+      "question": "What kind of products does NVIDIA (NVDA) make?",
+      "ground_truth_answer": "NVIDIA is a semiconductor company that designs GPUs and computing hardware used for graphics, gaming, data centers, and AI.",
+      "relevant_tickers": ["NVDA"]
+    },
+    {
+      "id": "fact-004",
+      "category": "factual",
+      "question": "Which cloud platform does Amazon (AMZN) operate?",
+      "ground_truth_answer": "Amazon operates Amazon Web Services (AWS), its cloud computing platform, alongside its e-commerce business.",
+      "relevant_tickers": ["AMZN"]
+    },
+    {
+      "id": "fact-005",
+      "category": "factual",
+      "question": "What industry is Tesla (TSLA) in?",
+      "ground_truth_answer": "Tesla is in the automotive industry (Consumer Cyclical), producing electric vehicles and related energy products.",
+      "relevant_tickers": ["TSLA"]
+    },
+    {
+      "id": "fact-006",
+      "category": "factual",
+      "question": "How does Meta (META) primarily make money?",
+      "ground_truth_answer": "Meta operates in Communication Services and earns revenue primarily from advertising across its social media platforms.",
+      "relevant_tickers": ["META"]
+    },
+    {
+      "id": "fact-007",
+      "category": "factual",
+      "question": "What sector is JPMorgan (JPM) in?",
+      "ground_truth_answer": "JPMorgan is in the Financial Services sector, providing banking and financial services.",
+      "relevant_tickers": ["JPM"]
+    },
+    {
+      "id": "fact-008",
+      "category": "factual",
+      "question": "What does Coca-Cola (KO) sell?",
+      "ground_truth_answer": "Coca-Cola is a Consumer Defensive company that produces and sells non-alcoholic beverages.",
+      "relevant_tickers": ["KO"]
+    },
+    {
+      "id": "fact-009",
+      "category": "factual",
+      "question": "What is Exxon Mobil's (XOM) line of business?",
+      "ground_truth_answer": "Exxon Mobil is an Energy company engaged in oil and gas exploration, production, and refining.",
+      "relevant_tickers": ["XOM"]
+    },
+    {
+      "id": "fact-010",
+      "category": "factual",
+      "question": "What was the most recent weekly closing price for AAPL?",
+      "ground_truth_answer": "A specific dollar closing price for the most recent week in the data, cited from the latest weekly price record for AAPL.",
+      "relevant_tickers": ["AAPL"]
+    },
+    {
+      "id": "fact-011",
+      "category": "factual",
+      "question": "What 52-week price range is reported for NVDA?",
+      "ground_truth_answer": "The 52-week low and high dollar figures for NVDA as reported in the company information.",
+      "relevant_tickers": ["NVDA"]
+    },
+    {
+      "id": "fact-012",
+      "category": "factual",
+      "question": "What trading volume is reported for MSFT in the most recent week?",
+      "ground_truth_answer": "A specific weekly trading-volume figure for MSFT cited from the latest weekly price record.",
+      "relevant_tickers": ["MSFT"]
+    },
+    {
+      "id": "cmp-001",
+      "category": "comparison",
+      "question": "Between XOM and KO, which one is in the energy sector?",
+      "ground_truth_answer": "Exxon Mobil (XOM) is the energy company; Coca-Cola (KO) is a consumer defensive beverage company.",
+      "relevant_tickers": ["XOM", "KO"]
+    },
+    {
+      "id": "cmp-002",
+      "category": "comparison",
+      "question": "Which company operates AWS, Amazon (AMZN) or Google (GOOGL)?",
+      "ground_truth_answer": "Amazon (AMZN) operates AWS. Google (GOOGL) operates Google Cloud, a different platform.",
+      "relevant_tickers": ["AMZN", "GOOGL"]
+    },
+    {
+      "id": "cmp-003",
+      "category": "comparison",
+      "question": "Between NVDA and KO, which is the semiconductor company?",
+      "ground_truth_answer": "NVIDIA (NVDA) is the semiconductor company; Coca-Cola (KO) is a beverage company.",
+      "relevant_tickers": ["NVDA", "KO"]
+    },
+    {
+      "id": "cmp-004",
+      "category": "comparison",
+      "question": "Which of JPM and TSLA is a bank?",
+      "ground_truth_answer": "JPMorgan (JPM) is the bank; Tesla (TSLA) is an automotive company.",
+      "relevant_tickers": ["JPM", "TSLA"]
+    },
+    {
+      "id": "cmp-005",
+      "category": "comparison",
+      "question": "Comparing AAPL and MSFT, what sector do they share?",
+      "ground_truth_answer": "Both Apple (AAPL) and Microsoft (MSFT) are in the Technology sector.",
+      "relevant_tickers": ["AAPL", "MSFT"]
+    },
+    {
+      "id": "cmp-006",
+      "category": "comparison",
+      "question": "Which had a larger weekly change in the most recent week, AAPL or MSFT?",
+      "ground_truth_answer": "A comparison of the two most recent weekly percentage changes for AAPL and MSFT, naming whichever is larger, with both figures cited from context.",
+      "relevant_tickers": ["AAPL", "MSFT"]
+    },
+    {
+      "id": "cmp-007",
+      "category": "comparison",
+      "question": "Between NVDA and XOM, which reports a higher P/E ratio?",
+      "ground_truth_answer": "A comparison of the reported P/E ratios for NVDA and XOM, naming whichever is higher, with both values cited from context.",
+      "relevant_tickers": ["NVDA", "XOM"]
+    },
+    {
+      "id": "cmp-008",
+      "category": "comparison",
+      "question": "Which is in Communication Services, META or JPM?",
+      "ground_truth_answer": "Meta (META) is in Communication Services; JPMorgan (JPM) is in Financial Services.",
+      "relevant_tickers": ["META", "JPM"]
+    },
+    {
+      "id": "trend-001",
+      "category": "trend",
+      "question": "Describe the overall price trend for NVDA over the available period.",
+      "ground_truth_answer": "A summary of whether NVDA's weekly closing prices generally rose, fell, or stayed flat across the available weeks, grounded in the weekly records.",
+      "relevant_tickers": ["NVDA"]
+    },
+    {
+      "id": "trend-002",
+      "category": "trend",
+      "question": "Has AAPL trended up or down over the weeks of data available?",
+      "ground_truth_answer": "A directional read of AAPL's weekly closes from the earliest to the latest available week, stating up, down, or roughly flat.",
+      "relevant_tickers": ["AAPL"]
+    },
+    {
+      "id": "trend-003",
+      "category": "trend",
+      "question": "Based on weekly changes, has TSLA been more volatile or stable recently?",
+      "ground_truth_answer": "An assessment of TSLA's week-to-week percentage changes describing the degree of volatility, grounded in the weekly records.",
+      "relevant_tickers": ["TSLA"]
+    },
+    {
+      "id": "trend-004",
+      "category": "trend",
+      "question": "What was the highest weekly high recorded for AMZN in the data?",
+      "ground_truth_answer": "The largest weekly high dollar figure for AMZN among the available weekly records.",
+      "relevant_tickers": ["AMZN"]
+    },
+    {
+      "id": "trend-005",
+      "category": "trend",
+      "question": "Did META have any down weeks in the available data?",
+      "ground_truth_answer": "A statement of whether any weekly change for META was negative, citing the relevant week(s) if so.",
+      "relevant_tickers": ["META"]
+    },
+    {
+      "id": "trend-006",
+      "category": "trend",
+      "question": "How did GOOGL's closing price move from the first to the last available week?",
+      "ground_truth_answer": "A comparison of GOOGL's earliest and latest weekly closing prices, stating the net direction and rough magnitude.",
+      "relevant_tickers": ["GOOGL"]
+    },
+    {
+      "id": "trend-007",
+      "category": "trend",
+      "question": "Summarize KO's recent weekly performance.",
+      "ground_truth_answer": "A concise summary of KO's weekly closes and changes over the available period, grounded in the records.",
+      "relevant_tickers": ["KO"]
+    },
+    {
+      "id": "trend-008",
+      "category": "trend",
+      "question": "Which week showed the largest single-week move for XOM?",
+      "ground_truth_answer": "The week with the largest absolute weekly percentage change for XOM, citing the date and figure.",
+      "relevant_tickers": ["XOM"]
+    },
+    {
+      "id": "refuse-001",
+      "category": "refusal",
+      "question": "What is Apple's next dividend payment date?",
+      "ground_truth_answer": "The assistant should say the context does not contain dividend payment dates and that it cannot provide this information.",
+      "relevant_tickers": ["AAPL"]
+    },
+    {
+      "id": "refuse-002",
+      "category": "refusal",
+      "question": "What will NVDA's stock price be next month?",
+      "ground_truth_answer": "The assistant should decline to predict future prices and explain it can only report on the historical data in the context.",
+      "relevant_tickers": ["NVDA"]
+    },
+    {
+      "id": "refuse-003",
+      "category": "refusal",
+      "question": "What is the CEO's salary at Microsoft?",
+      "ground_truth_answer": "The assistant should state that executive compensation is not in the provided context and it cannot answer.",
+      "relevant_tickers": ["MSFT"]
+    },
+    {
+      "id": "refuse-004",
+      "category": "refusal",
+      "question": "Tell me about the stock performance of ZZZZ Corp.",
+      "ground_truth_answer": "The assistant should say it has no data for ZZZZ Corp in the context and cannot provide information about it.",
+      "relevant_tickers": []
+    },
+    {
+      "id": "refuse-005",
+      "category": "refusal",
+      "question": "What was Apple's stock price back in 2010?",
+      "ground_truth_answer": "The assistant should state that the available data does not go back to 2010 and it cannot provide that historical price.",
+      "relevant_tickers": ["AAPL"]
+    },
+    {
+      "id": "refuse-006",
+      "category": "refusal",
+      "question": "Should I buy Tesla stock right now?",
+      "ground_truth_answer": "The assistant should decline to give personalized investment advice and limit itself to describing the available data.",
+      "relevant_tickers": ["TSLA"]
+    },
+    {
+      "id": "refuse-007",
+      "category": "refusal",
+      "question": "What is Coca-Cola's debt-to-equity ratio?",
+      "ground_truth_answer": "The assistant should state that the debt-to-equity ratio is not present in the provided context and it cannot answer.",
+      "relevant_tickers": ["KO"]
+    },
+    {
+      "id": "refuse-008",
+      "category": "refusal",
+      "question": "What were JPMorgan's quarterly earnings per share last quarter?",
+      "ground_truth_answer": "The assistant should say earnings-per-share figures are not in the context and it cannot provide them.",
+      "relevant_tickers": ["JPM"]
+    },
+    {
+      "id": "refuse-009",
+      "category": "refusal",
+      "question": "Compare the stock of AAPL with that of a company called Globex Industries.",
+      "ground_truth_answer": "The assistant can describe AAPL from the context but should state it has no data for Globex Industries and cannot compare.",
+      "relevant_tickers": ["AAPL"]
+    }
+  ]
+}

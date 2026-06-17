@@ -1,0 +1,4 @@
+# Transient run artifacts. Keep the folder, drop the per-run files.
+results/*.json
+results/*.md
+!results/.gitkeep

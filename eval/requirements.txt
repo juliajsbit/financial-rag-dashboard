@@ -1,0 +1,7 @@
+# Eval-harness extras, installed on top of backend/requirements.txt.
+# RAGAS 0.2+ needs Python 3.10+ (the backend venv is 3.9 - use a separate 3.11
+# venv, or the CI image, to run RAGAS metrics. The judge + dataset + CI compare
+# work on 3.9; pass --no-ragas there.)
+ragas>=0.2,<0.3
+datasets>=2.19.0
+pandas>=2.2.2
