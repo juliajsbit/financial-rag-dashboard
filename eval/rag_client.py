@@ -81,6 +81,11 @@ def predict_dataset(
             )
         return preds
 
+    # Trace live runs to LangSmith when configured (no-op without an API key).
+    from app.core.tracing import enable_langsmith
+    if enable_langsmith("financial-rag-eval"):
+        print("[rag] LangSmith tracing enabled")
+
     preds: List[Prediction] = []
     for e in entries:
         res = _predict_live(e.question)

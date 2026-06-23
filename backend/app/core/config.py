@@ -14,8 +14,15 @@ class Settings(BaseSettings):
     environment: str = "development"
     cors_origins: str = "http://localhost:3000"
 
+    # LangSmith tracing (optional). Set langchain_api_key to enable observability:
+    # every RAG chain and judge call is traced to LangSmith for inspection.
+    langchain_api_key: str = ""
+    langchain_project: str = "financial-rag-eval"
+    langchain_endpoint: str = "https://api.smith.langchain.com"
+
     class Config:
         env_file = str(ENV_FILE)
+        extra = "ignore"
 
 
 @lru_cache

@@ -218,6 +218,24 @@ The takeaway for an eval pipeline: pick metrics that match the question type,
 and don't read a single aggregate as "quality". A stronger embedding model would
 lift the RAGAS numbers; the trade-off here is zero external API dependency.
 
+## Observability (LangSmith)
+
+Optional tracing to [LangSmith](https://smith.langchain.com) for inspecting and
+debugging runs. When `LANGCHAIN_API_KEY` is set in `backend/.env`, every RAG
+chain call and judge call is traced - you can see the retrieved context, the
+prompt, the model output, latency, and token counts per eval question, grouped
+under a project.
+
+```bash
+# backend/.env
+LANGCHAIN_API_KEY=ls-...            # from https://smith.langchain.com
+LANGCHAIN_PROJECT=financial-rag-eval
+```
+
+It is a no-op without a key, so the harness runs unchanged. Enabling is wired in
+[backend/app/core/tracing.py](../backend/app/core/tracing.py); the live app
+traces under `financial-rag-app`, the eval harness under `financial-rag-eval`.
+
 ## Compatibility notes
 
 - The harness calls the RAG chain with the **sync** LangChain API.
