@@ -16,7 +16,7 @@ a golden dataset, and a CI gate that blocks regressions.
 | --- | --- | --- |
 | RAG backend | FastAPI, LangChain, Claude, Postgres + pgvector, Redis, yfinance | [`backend/`](backend) |
 | Frontend | Next.js 14, TypeScript, streaming chat, D3/Recharts | [`frontend/`](frontend) |
-| **Eval harness + CI gate** | RAGAS, LLM-as-judge, GitHub Actions | [`eval/`](eval) |
+| **Eval harness + CI gate** | RAGAS, LLM-as-judge, LangSmith tracing, GitHub Actions | [`eval/`](eval) |
 
 ## The RAG app
 
